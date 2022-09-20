@@ -1,0 +1,35 @@
+mixin btn(bClass)
+	button.btn(class=bClass)
+
+.app#app
+	.tracks(:class='{isactive: isPlaylistActive}')
+		ul.tracks__list
+			li.tracks__item(v-for="(item,index) in musicPlaylist" :class='{isactive: isCurrentSong(index)}')
+				.tracks__info
+					h3.tracks__info-artist {{item.artist}}
+					span.tracks__info-name {{ item.title }}
+				button.btn(class='play btn--xs' @click="changeSong(index)" :class='{pause: isCurrentSong(index)}')
+	.row.app__head
+		+btn('btn--small back')
+		button.btn.btn--small.playlist(@click='togglePlaylist' :class='{isactive: isPlaylistActive}')
+	.row.app__body
+		.album
+			.album__img(@load="onImageLoaded" :style="{ backgroundImage: `url(${musicPlaylist[currentSong].image})` }" :class="{isactive: isPlaylistActive}" :key="currentSong" ondragstart="return false")
+			.album__info(:class='{isactive: isPlaylistActive}')
+				h3.album__info-name(:key="currentSong") {{ musicPlaylist[currentSong].artist }}
+				p.album__info-track(:key="currentSong") {{ musicPlaylist[currentSong].title }}
+		.progress(ref="progress" :class='{isactive: isPlaylistActive}')
+			.progress__count
+				span {{ currentTime | fancyTimeFormat }}
+				span {{ trackDuration | fancyTimeFormat }}
+			.progress__bar()
+				.progress__bar-current(:style="{ width: currentProgressBar + '%' }")
+				.progress__bar-pin(:style="{ left: currentProgressBar + '%' }")
+				
+			
+			
+	.row.app__footer(:class='{isactive: isPlaylistActive}')
+		button.btn(class='prev btn--big' @click='prevSong')
+		button.btn(class='play btn--big' @click='playAudio' :class='{pause: currentlyPlaying}')
+		button.btn(class='next btn--big' @click='nextSong')
+		

@@ -1,0 +1,331 @@
+$img: 'https://sun9-2.userapi.com/c830709/v830709453/17f58c/vPCov8kW6Ns.jpg'
+$gray: #6a6a6a
+$g2: #84878A
+$black: #050606
+$dark: #18191D
+$abbey: #47494B
+$brightRed: #D11302
+$dRed: #A30D02
+$RedOxide: #5D0F04
+$accent: #E8550C
+$RoseBud: #F5A691
+$white: #fff
+$lemon: #f9ca24
+
+
+$gr: linear-gradient(120deg, $abbey 0%, $dark 100%)
+$gr2: linear-gradient(120deg, $accent 0%, lighten($accent, 10) 100%)
+$gr3: linear-gradient(45deg, $brightRed 0%, $lemon 100%)
+
+
+*, *::before, *::after
+	padding: 0
+	margin: 0
+	box-sizing: border-box
+body
+	font-size: 28px
+	background-color: #26282B
+
+//button
+.btn
+	cursor: pointer
+	position: relative
+	display: inline-block
+	outline: none
+	border-radius: 50px
+	background-color: $black
+	background-image: $gr
+	color: $g2
+	text-align: center
+	border-style: solid
+	border-color: lighten($dark, 10)
+	font-family: 'Font Awesome 5 Free'
+	font-weight: 600
+	text-align: center
+	&::before
+		user-select: none
+		position: absolute
+		top: 50%
+		transform: translate(-50%, -50%)
+	&--big
+		font-size: 1.1rem
+		height: 80px
+		width: 80px
+		border-width: 3px
+		line-height: 1
+		box-shadow: -3px -3px 20px darken($gray, 6), 5px 5px 20px $black
+		&:active, &.active
+			box-shadow: inset 10px 10px 20px rgba($brightRed, .5), -3px -3px 20px darken($gray, 6), 5px 5px 20px $black
+
+	&--small
+		box-shadow: -3px -3px 15px $gray, 3px 3px 15px $black
+		font-size: .8rem
+		height: 50px
+		width: 50px
+		border-width: 2px
+		line-height: 1
+		&:active, &.active
+			box-shadow: inset 10px 10px 20px rgba($brightRed, .5), -3px -3px 15px $gray, 3px 3px 15px $black
+	&--xs
+		box-shadow: -3px -3px 15px $gray, 3px 3px 15px $black
+		font-size: .6rem
+		height: 40px
+		width: 40px
+		border-width: 2px
+		line-height: 1
+		&:active, &.active
+			box-shadow: inset 10px 10px 20px rgba($brightRed, .5), -3px -3px 15px $gray, 3px 3px 15px $black
+	&:active, &.active
+		border-color: $accent
+		background-image: $gr2
+		color: $white
+
+
+	&.play
+		&::before
+			content: '\f04b'
+			left: 50%
+		&.pause
+			border-color: $accent
+			background-image: $gr2
+			color: $white
+			box-shadow: inset 10px 10px 20px rgba($brightRed, .5), -3px -3px 20px darken($gray, 6), 5px 5px 20px $black
+			&::before
+				content: '\f04c'
+				left: 50%
+
+	&.pause
+		&::before
+			content: '\f04c'
+			left: 50%
+
+	&.dots
+		&::before
+			content: '\f141'
+			left: 50%
+
+	&.playlist
+		&::before
+			content: '\f0c9'
+			left: 50%
+		&.isactive
+			border-color: $accent
+			background-image: $gr2
+			color: $white
+			box-shadow: inset 10px 10px 20px rgba($brightRed, .5), -3px -3px 20px darken($gray, 6), 5px 5px 20px $black
+			&::before
+				content: '\f00d'
+
+	&.heart
+		&::before
+			content: '\f004'
+			left: 49%
+
+	&.prev
+		margin-right: 20px
+		&::before
+			content: '\f04a'
+			left: 48%
+
+	&.next
+		margin-left: 20px
+		&::before
+			content: '\f04e'
+			left: 50%
+
+	&.back
+		&::before
+			content: '\f053'
+			left: 48%
+
+.app
+	overflow: hidden
+	position: relative
+	max-width: 400px
+	min-height: 875px
+	margin: 20px auto
+	display: flex
+	flex-direction: column
+	align-items: center
+	background-image: linear-gradient(#343A3F 0%, #232528 100%)
+	border: 1px solid darken($g2, 30)
+	border-radius: 50px
+	box-shadow: 5px 5px 35px $dark
+	&__head
+		justify-content: space-between
+		padding: 35px 35px 0
+	&__body
+		margin: 30px 0 50px
+		flex-direction: column
+		padding: 0 35px 0 35px
+	&__footer
+		justify-content: center
+		margin-bottom: 40px
+		opacity: 1
+		transition: opacity .25s ease
+		&.isactive
+			opacity: 0
+
+.row
+	display: flex
+	width: 100%
+
+.album
+	align-self: center
+	margin-bottom: 50px
+	&__img
+		overflow: hidden
+		height: 300px
+		width: 300px
+		transition: all .25s ease
+		border: 10px solid $dark
+		border-radius: 100%
+		transform-origin: top center
+		box-shadow: -5px -5px 25px darken($gray, 15), 5px 5px 25px $black
+		background-image: url($img)
+		background-repeat: no-repeat
+		background-position: center
+		background-size: cover
+		&.isactive
+			transform: scale(.5)
+	&__info
+		margin-top: 50px
+		text-align: center
+		color: #A7A8AA
+		opacity: 1
+		transition: opacity .25s ease
+		&.isactive
+			opacity: 0
+		&-name
+			font-size: 36px
+			padding-bottom: 10px
+		&-track
+			padding-top: 5px
+			font-size: 16px
+
+.progress
+	position: relative
+	margin-bottom: 30px
+	opacity: 1
+	transition: opacity .25s ease
+	&.isactive
+		opacity: 0
+	&__count
+		width: 100%
+		display: flex
+		justify-content: space-between
+		font-size: 14px
+		color: $gray
+	&__bar
+		position: relative
+		margin-top: 25px
+		border-radius: 50px
+		width: 100%
+		height: 8px
+		background-color: lighten($dark, 5)
+		cursor: pointer
+		&::before
+			content: ''
+			position: absolute
+			height: 100%
+			width: 100%
+			box-sizing: border-box
+			border-bottom: 2px solid $gray
+			border-left: 2px solid $gray
+			border-right: 1px solid $gray
+			z-index: 1
+			border-radius: 50px
+			box-shadow: inset 5px 3px 5px #000
+		
+		&-current
+			transition: all .25s ease
+			position: absolute
+			background-image: $gr3
+			height: calc(100% - 2px)
+			width: 0%
+			z-index: 3
+			bottom: 1px
+			left: 2px
+			border-radius: 50px
+			box-shadow: inset 0px 2px 3px rgba($dark, .5)
+		&-pin
+			height: 30px
+			width: 30px
+			border-radius: 50px
+			position: absolute
+			left: 0%
+			transition: all .25s ease
+			top: 50%
+			transform: translateY(-50%)
+			z-index: 10
+			background-image: $gr
+			box-shadow: -5px -5px 15px darken($gray, 15), 3px 3px 15px $black, inset -3px -3px 5px $dark
+			&::after
+				content: ''
+				position: absolute
+				border-radius: 50px
+				top: 50%
+				left: 50%
+				transform: translate(-50%, -50%)
+				height: 35%
+				width: 35%
+				background-color: $lemon
+				box-shadow: -5px -5px 12px $dark, 5px 5px 12px $gray, inset 2px 2px 5px lighten($gray, 5)
+.tracks
+	position: absolute
+	max-height: 600px
+	height: 100%
+	list-style-type: none
+	overflow: hidden
+	left: 0
+	width: 100%
+	padding: 20px 20px 0 20px
+	border-bottom-right-radius: 50px
+	border-bottom-left-radius: 50px
+	bottom: -100%
+	transition: bottom .25s ease
+	&.isactive
+		z-index: 10
+		animation: bounce .5s ease forwards alternate
+	&__list
+		padding-top: 20px
+		position: relative
+		top: 0
+		overflow-y: auto
+		height: 100%
+		width: calc(100% + 40px)
+		padding-bottom: 20px
+	&__item
+		color: #A7A8AA
+		width: calc(100% - 20px)
+		display: flex
+		justify-content: space-between
+		align-items: center
+		padding: 20px
+		border-radius: 20px
+		transition: all .5s ease
+		border: 1px solid transparent
+		&.isactive
+			background-color: lighten($dark, 1)
+			border-bottom: 1px solid $dark
+			border-top: 1px solid darken($gray, 20)
+			border-right: 1px solid darken($gray, 20)
+			box-shadow: inset 0 -25px 25px lighten($dark, 5)
+			// background-image: linear-gradient($dark 0%, lighten($dark, 20))
+		
+	&__info
+		display: flex
+		flex-direction: column
+		&-artist
+			font-size: 18px
+			padding-bottom: 5px
+		&-name
+			font-size: 14px
+
+@keyframes bounce
+	0%
+		bottom: -100%
+	50%
+		bottom: 3%
+	100%
+		bottom: 0%
